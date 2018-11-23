@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TestTask_ChuchumakovEV
 {
-    public partial class Form1 : Form
+    public partial class Help : FormDesign
     {
-        public Form1()
+        public Help()
         {
             InitializeComponent();
         }
