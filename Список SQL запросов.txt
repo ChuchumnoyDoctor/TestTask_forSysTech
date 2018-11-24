@@ -12,3 +12,15 @@ VALUES ("Отсутствует", 0, 0,4,0)
 
 INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
 VALUES ("Супер-пользователь", 0, 0,5,0)
+
+INSERT INTO Worker (Name,SecondName, DataPostupleniyaNaRabotu, FK_GroupOfWorker, BazovayaStavkaZP) 
+VALUES ("Elon", "Musk", "28.06.1971",7,0)
+
+INSERT INTO UchentnieDannie (Login,Password,FK_IdWorker) 
+VALUES ("SuperAdmin", "ToTheMars",1)
+
+INSERT INTO Worker (Name,SecondName, DataPostupleniyaNaRabotu, FK_GroupOfWorker, BazovayaStavkaZP) 
+VALUES ("No data", "No data", "No data",6,0)
+
+INSERT INTO SvyazSotrudnikNachalnik (Fk_IdSotrudnik,Fk_IdNachalnik) 
+VALUES (2,1)

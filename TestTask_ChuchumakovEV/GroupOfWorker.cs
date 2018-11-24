@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestTask_ChuchumakovEV
 {
-    class GroupOfWorker
+    public class GroupOfWorker
     {
         public int Id { get; set; }
         public string NameOfGroup { get; set; }

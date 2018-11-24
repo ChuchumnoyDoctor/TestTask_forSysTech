@@ -44,14 +44,6 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.Size = new System.Drawing.Size(446, 68);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Size = new System.Drawing.Size(446, 68);
-            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(0, 414);
@@ -107,16 +99,17 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.label3.Location = new System.Drawing.Point(79, 44);
+            this.label3.Location = new System.Drawing.Point(79, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 19);
+            this.label3.Size = new System.Drawing.Size(196, 19);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Ввведите имя и пароль.\r\n";
+            this.label3.Text = "Ввведите логин и пароль.\r\n";
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(83, 162);
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(179, 26);
             this.textBox3.TabIndex = 7;
             // 
@@ -143,9 +136,9 @@
             this.label2.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.label2.Location = new System.Drawing.Point(80, 140);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 19);
+            this.label2.Size = new System.Drawing.Size(77, 19);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Пароль:";
+            this.label2.Text = "Password:";
             // 
             // label1
             // 
@@ -154,9 +147,9 @@
             this.label1.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.label1.Location = new System.Drawing.Point(80, 90);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 19);
+            this.label1.Size = new System.Drawing.Size(52, 19);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Имя:";
+            this.label1.Text = "Login:";
             // 
             // textBox4
             // 

@@ -34,50 +34,40 @@ namespace TestTask_ChuchumakovEV
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
-            conn.Open();
-            SQLiteCommand command;
-           //command = new SQLiteCommand();
-           
-            string sql = "SELECT * FROM GroupOfWorker";
-            command = new SQLiteCommand(sql, conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-           /* SQLiteDataAdapter ad = new SQLiteDataAdapter(command);
-            DataSet data = new DataSet();
-            data.Reset();
-            ad.Fill(data);*/
-            reader.Read();
-            string table = reader.GetString(0);
-            MessageBox.Show(table);
-            /*
-            string baseName = "DBforTestTask.db";
-            SQLiteFactory factory = (SQLiteFactory)DbProviderFactories.GetFactory("System.Data.SQLite");
-            using (SQLiteConnection connection = (SQLiteConnection)factory.CreateConnection())
+            string Login = textBoxName.Text;
+            string Password = textBoxPassword.Text;
+            string str = "";
+            string fk;
+            ZaprosVBD ZaprosPodkucheniya = new ZaprosVBD();
+            str = ZaprosPodkucheniya.GetZapros(Login, Password);
+
+            if (str == "Неверный логин и/или пароль.")
             {
-                connection.ConnectionString = "Data Source = " + baseName + "Version = 3; New =; Compress = True;";
-                connection.Open();
-                using (SQLiteCommand command = new SQLiteCommand(connection))
-                {
-                    command.CommandText = @"select * from GroupOfWorker;";
-                    command.CommandType = CommandType.Text;
-                    command.ExecuteNonQuery();
-                }
-            }*/
-            /*string login = textBox1.Text;
-            string pass = textBox2.Text;
-            OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OleDb.12.0; Data Source = Борей.accdb");
-            conn.Open();
-            OleDbCommand comm = new OleDbCommand("SELECT COUNT (*) FROM users WHERE login = '" + login + "' and password = '" + pass + "'", conn);
-
-
-            if ((int)(comm.ExecuteScalar()) == 1)
-            {*/
-            MainForm f = new MainForm();
-                this.Hide();
-                f.ShowDialog();
-                this.Show();/*
+                MessageBox.Show("Неверный пароль и/или логин");
             }
-            else {MessageBox.Show("Неверный пароль и/или логин");}     */
+            else
+            {
+                fk = ZaprosPodkucheniya.FK_IdWorker;
+                int x = 0;
+                bool IsFK;
+                try
+                {
+                    x = Int32.Parse(fk);
+                    IsFK = true;
+                }
+                catch
+                {
+                    IsFK = false;
+                    MessageBox.Show("Отсутствуют права доступа. Попробуйте позже или свяжитесь с администратором.");
+                }
+                if (IsFK) {
+                    MainForm f = new MainForm(x);
+                    this.Hide();
+                    f.ShowDialog();
+                    this.Show();
+                }
+               
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

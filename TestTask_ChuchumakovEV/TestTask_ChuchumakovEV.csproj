@@ -85,7 +85,6 @@
     <Compile Include="AddWorker.Designer.cs">
       <DependentUpon>AddWorker.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionString.cs" />
     <Compile Include="FormDesign.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +115,7 @@
     <Compile Include="SvyazSotrudnikNachalnik.cs" />
     <Compile Include="UchentnieDannie.cs" />
     <Compile Include="Worker.cs" />
+    <Compile Include="ZaprosVBD.cs" />
     <Compile Include="Аuthorization.cs">
       <SubType>Form</SubType>
     </Compile>
