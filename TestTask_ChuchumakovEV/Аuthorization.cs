@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +34,35 @@ namespace TestTask_ChuchumakovEV
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            conn.Open();
+            SQLiteCommand command;
+           //command = new SQLiteCommand();
+           
+            string sql = "SELECT * FROM GroupOfWorker";
+            command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+           /* SQLiteDataAdapter ad = new SQLiteDataAdapter(command);
+            DataSet data = new DataSet();
+            data.Reset();
+            ad.Fill(data);*/
+            reader.Read();
+            string table = reader.GetString(0);
+            MessageBox.Show(table);
+            /*
+            string baseName = "DBforTestTask.db";
+            SQLiteFactory factory = (SQLiteFactory)DbProviderFactories.GetFactory("System.Data.SQLite");
+            using (SQLiteConnection connection = (SQLiteConnection)factory.CreateConnection())
+            {
+                connection.ConnectionString = "Data Source = " + baseName + "Version = 3; New =; Compress = True;";
+                connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(connection))
+                {
+                    command.CommandText = @"select * from GroupOfWorker;";
+                    command.CommandType = CommandType.Text;
+                    command.ExecuteNonQuery();
+                }
+            }*/
             /*string login = textBox1.Text;
             string pass = textBox2.Text;
             OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OleDb.12.0; Data Source = Борей.accdb");
@@ -41,7 +72,7 @@ namespace TestTask_ChuchumakovEV
 
             if ((int)(comm.ExecuteScalar()) == 1)
             {*/
-                MainForm f = new MainForm();
+            MainForm f = new MainForm();
                 this.Hide();
                 f.ShowDialog();
                 this.Show();/*

@@ -1,0 +1,14 @@
+INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
+VALUES ("Employee", 3, 30,1,0)
+
+INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
+VALUES ("Manager", 5, 40,2,0.5)
+
+INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
+VALUES ("Salesman", 1, 35,3,0.3)
+
+INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
+VALUES ("Отсутствует", 0, 0,4,0)
+
+INSERT INTO GroupOfWorker (NameOfGroup,ProcentStavkaByYear,EndProcentStavka,LevelOfGroup,ProcentStavkaPodchinennih) 
+VALUES ("Супер-пользователь", 0, 0,5,0)
