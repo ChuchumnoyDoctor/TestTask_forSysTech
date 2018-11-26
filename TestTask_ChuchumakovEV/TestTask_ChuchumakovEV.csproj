@@ -115,6 +115,7 @@
     <Compile Include="SvyazSotrudnikNachalnik.cs" />
     <Compile Include="UchentnieDannie.cs" />
     <Compile Include="Worker.cs" />
+    <Compile Include="ZaprosRashetaZP.cs" />
     <Compile Include="ZaprosVBD.cs" />
     <Compile Include="Аuthorization.cs">
       <SubType>Form</SubType>

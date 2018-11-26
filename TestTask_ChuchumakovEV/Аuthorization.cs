@@ -64,6 +64,7 @@ namespace TestTask_ChuchumakovEV
                     MainForm f = new MainForm(x);
                     this.Hide();
                     f.ShowDialog();
+                    textBoxPassword.Text = "";
                     this.Show();
                 }
                
