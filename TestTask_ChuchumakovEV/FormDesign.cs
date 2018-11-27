@@ -14,12 +14,24 @@ namespace TestTask_ChuchumakovEV
     {
         public FormDesign()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            
         }
-
+        private string locationlocation { get; set; }
+        public string path { get; set; }
         private void buttonExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        public void setPathDefault(string path)
+        {
+            this.path = path;
+        }
+        public void setPathDefault()
+        {
+            locationlocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //Для выделения пути к каталогу, воспользуйтесь `System.IO.Path`:
+            path = System.IO.Path.GetDirectoryName(locationlocation);
         }
     }
 }

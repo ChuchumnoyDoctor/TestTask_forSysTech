@@ -9,10 +9,13 @@ namespace TestTask_ChuchumakovEV
 {
     class ZaprosVBD
     {
-        public string GetZapros(string Login, string Password)
+        public string GetZapros(string Login, string Password, string path)
         {
             string str = "";
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            
+
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
+            //SQLiteConnection conn = new SQLiteConnection(@"Data Source=" + path + "\DBforTestTask.db;");
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -44,14 +47,14 @@ namespace TestTask_ChuchumakovEV
             return str;
         }
         public string FK_IdWorker { get; set; }
-        public string SetZapros(string Login, string Password)
+        public string SetZapros(string Login, string Password, string path)
         {
             string login = Login;
             string pass = Password;
             string ret = "Такой пользователь уже существует";
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
-            SQLiteCommand comm = new SQLiteCommand("SELECT COUNT (*) FROM UchentnieDannie WHERE Login = '" + login + "' and password = '" + pass + "'", conn);
+            SQLiteCommand comm = new SQLiteCommand("SELECT COUNT (*) FROM UchentnieDannie WHERE Login = '" + login + "'", conn);
             object result = comm.ExecuteScalar(); // ExecuteScalar fails on null
             int i = (int)Convert.ToInt32(result);
             if (i == 1)
@@ -72,9 +75,9 @@ namespace TestTask_ChuchumakovEV
             conn.Close();
             return ret;
         }
-        public List<Worker> GetSpisokPodchinenih(int Fk_IdNachalnik)
+        public List<Worker> GetSpisokPodchinenih(int Fk_IdNachalnik, string path)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -94,7 +97,7 @@ namespace TestTask_ChuchumakovEV
                 while (reader.Read())
                 {
                     Worker work = new Worker();
-                    work = GetWorkerFromBD(Int32.Parse(reader[0].ToString()));
+                    work = GetWorkerFromBD(Int32.Parse(reader[0].ToString()), path);
                     data.Add(work);
                 }
                 reader.Close();
@@ -102,9 +105,9 @@ namespace TestTask_ChuchumakovEV
             conn.Close();
             return data;
         }
-        public List<Worker> GetSpisokPodchinenih(string Name, string SecondName, string DataPostupleniyaNaRabotu, string NameOfGroup, double BazovayaStavkaZP)
+        public List<Worker> GetSpisokPodchinenih(string Name, string SecondName, string DataPostupleniyaNaRabotu, string NameOfGroup, double BazovayaStavkaZP, string path)
         {
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -139,28 +142,45 @@ namespace TestTask_ChuchumakovEV
             {
                 while (reader.Read())
                 {
-                    data =  GetSpisokPodchinenih(Int32.Parse(reader[0].ToString()));
+                    data =  GetSpisokPodchinenih(Int32.Parse(reader[0].ToString()),path);
                 }
                 reader.Close();
             }
             conn.Close();
             return data;
         }
-
-        public string SetZapros(string Login, string Password, int Key)
+        public string SetZapros(string Login, string Password, int Key, bool IsStill, string path)
         {
             string login = Login;
             string pass = Password;
             string ret = "Такой пользователь уже существует";
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
-            SQLiteCommand comm = new SQLiteCommand("SELECT COUNT (*) FROM UchentnieDannie WHERE Login = '" + login + "' and password = '" + pass + "'", conn);
+            SQLiteCommand comm = new SQLiteCommand("SELECT COUNT (*) FROM UchentnieDannie WHERE Login = '" + login + "'", conn);
             object result = comm.ExecuteScalar(); // ExecuteScalar fails on null
             conn.Close();
             int i = (int)Convert.ToInt32(result);
             if (i == 1)
             {
                 ret = "Такой пользователь уже существует!";
+                if (IsStill)
+                {
+                    if (result.GetType() != typeof(DBNull))
+                    {
+                        conn.Open();
+                        comm = new SQLiteCommand("UPDATE `UchentnieDannie` SET `FK_IdWorker` = '" + Key + "', Password = '" + pass + "' WHERE Login = '" + login + "'", conn);
+                        try
+                        {
+                            comm.ExecuteNonQuery();
+                            ret = "Регистрация прошла успешно!";
+                        }
+                        catch
+                        {
+                            ret = "База данных не доступна.";
+                        }
+                        conn.Close();
+                    }
+                }
             }
             else
                 if (result.GetType() != typeof(DBNull))
@@ -185,13 +205,42 @@ namespace TestTask_ChuchumakovEV
             }
             return ret;
         }
-        public int SetWorkerFromBD(string Name, string SecondName, string DataPostupleniyaNaRabotu, string Name_GroupOfWorker, string BazovayaStavkaZP, int Id_Nachalnika)
+        public GroupOfWorker GetGroupOfWorkerByNameOfGroup(string NameOfGroup, string path)
+        {
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
+            conn.Open();
+            SQLiteDataReader reader;
+            SQLiteCommand command;
+            string sql;
+
+            sql = "SELECT Id  FROM GroupOfWorker WHERE NameOfGroup = '" + NameOfGroup + "'";
+            command = new SQLiteCommand(sql, conn);
+            object result = command.ExecuteScalar(); // ExecuteScalar fails on null
+            int id = 0;
+            if (result == null)
+            {
+            }
+            else
+            {
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    id = Int32.Parse(reader[0].ToString());
+                }
+
+                reader.Close();
+            }
+            GroupOfWorker gr = GetGroupOfWorkerFromBD(id, path);
+            conn.Close();
+            return gr;
+        }
+        public int SetWorkerFromBD(string Name, string SecondName, string DataPostupleniyaNaRabotu, string Name_GroupOfWorker, string BazovayaStavkaZP, int Id_Nachalnika, string path)
         {
             ZaprosRashetaZP zP = new ZaprosRashetaZP();
             string[] str = zP.GetDelimiterByPoint(DataPostupleniyaNaRabotu);
             string DataP = str[0] + "." + str[1] + "." + str[2];
             Worker Person = new Worker();
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -244,10 +293,10 @@ namespace TestTask_ChuchumakovEV
 
             return idd;
         }
-        public Worker GetWorkerFromBD(int PrimaryKey)
+        public Worker GetWorkerFromBD(int PrimaryKey, string path)
         {
             Worker Person = new Worker();
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -272,19 +321,19 @@ namespace TestTask_ChuchumakovEV
                     Person.Name = reader[1].ToString();
                     Person.SecondName = reader[2].ToString();
                     Person.DataPostupleniyaNaRabotu = reader[3].ToString();
-                    Person.FK_GroupOfWorker = GetGroupOfWorkerFromBD(Int32.Parse(reader[4].ToString()));
+                    Person.FK_GroupOfWorker = GetGroupOfWorkerFromBD(Int32.Parse(reader[4].ToString()), path);
                     Person.BazovayaStavkaZP = Int32.Parse(reader[5].ToString());
-                    Person.Nachalnik = GetNachalnik(Person.Id);
+                    Person.Nachalnik = GetNachalnik(Person.Id, path);
                 }
                 reader.Close();
             }
             conn.Close();
             return Person;
         }
-        public string GetNachalnik(int Fk_IdSotrudnik)
+        public string GetNachalnik(int Fk_IdSotrudnik, string path)
         {
             string Person = "";
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -317,10 +366,10 @@ namespace TestTask_ChuchumakovEV
             conn.Close();
             return Person;
         }
-        public Dictionary<int, string> GetNachalnik(string GroupOfWorker)
+        public Dictionary<int, string> GetNachalnik(string GroupOfWorker, string path)
         {
             GroupOfWorker groupOfWorker = new GroupOfWorker();
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;
@@ -392,10 +441,10 @@ namespace TestTask_ChuchumakovEV
             conn.Close();
             return lst;
         }
-        public GroupOfWorker GetGroupOfWorkerFromBD(int PrimaryKey)
+        public GroupOfWorker GetGroupOfWorkerFromBD(int PrimaryKey, string path)
         {
             GroupOfWorker groupOfWorker = new GroupOfWorker();
-            SQLiteConnection conn = new SQLiteConnection("Data Source=DBforTestTask.db;");
+            SQLiteConnection conn = new SQLiteConnection(string.Format("DataSource=DBforTestTask.db;", path));
             conn.Open();
             SQLiteDataReader reader;
             SQLiteCommand command;

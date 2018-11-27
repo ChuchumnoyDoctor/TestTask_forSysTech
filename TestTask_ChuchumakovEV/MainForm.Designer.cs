@@ -552,10 +552,10 @@
             // 
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Right;
             this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(151, 0);
+            this.textBox11.Location = new System.Drawing.Point(193, 0);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(161, 26);
+            this.textBox11.Size = new System.Drawing.Size(119, 26);
             this.textBox11.TabIndex = 25;
             // 
             // label17
@@ -565,9 +565,9 @@
             this.label17.ForeColor = System.Drawing.Color.MediumSeaGreen;
             this.label17.Location = new System.Drawing.Point(3, 5);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(142, 19);
+            this.label17.Size = new System.Drawing.Size(184, 19);
             this.label17.TabIndex = 17;
-            this.label17.Text = "Заработная плата:";
+            this.label17.Text = "Заработная плата (руб.):";
             // 
             // label18
             // 

@@ -17,6 +17,7 @@ namespace TestTask_ChuchumakovEV
         public Аuthorization()
         {
             InitializeComponent();
+            setPathDefault();
         }
 
         private void panel3_Resize(object sender, EventArgs e)
@@ -39,35 +40,47 @@ namespace TestTask_ChuchumakovEV
             string str = "";
             string fk;
             ZaprosVBD ZaprosPodkucheniya = new ZaprosVBD();
-            str = ZaprosPodkucheniya.GetZapros(Login, Password);
-
-            if (str == "Неверный логин и/или пароль.")
+            bool Next = false;
+            try
             {
-                MessageBox.Show("Неверный пароль и/или логин");
+                str = ZaprosPodkucheniya.GetZapros(Login, Password, path);
+                Next = true;
             }
-            else
+            catch
             {
-                fk = ZaprosPodkucheniya.FK_IdWorker;
-                int x = 0;
-                bool IsFK;
-                try
+                MessageBox.Show("Нет доступа к БД или она не найдена. Попробуйте указать путь через меню, что сразу под кнопкой авторизации.");
+                Next = false;
+            }
+            if (Next)
+            {
+                if (str == "Неверный логин и/или пароль.")
                 {
-                    x = Int32.Parse(fk);
-                    IsFK = true;
+                    MessageBox.Show("Неверный пароль и/или логин");
                 }
-                catch
+                else
                 {
-                    IsFK = false;
-                    MessageBox.Show("Отсутствуют права доступа. Попробуйте позже или свяжитесь с администратором.");
+                    fk = ZaprosPodkucheniya.FK_IdWorker;
+                    int x = 0;
+                    bool IsFK;
+                    try
+                    {
+                        x = Int32.Parse(fk);
+                        IsFK = true;
+                    }
+                    catch
+                    {
+                        IsFK = false;
+                        MessageBox.Show("Отсутствуют права доступа. Попробуйте позже или свяжитесь с администратором.");
+                    }
+                    if (IsFK)
+                    {
+                        MainForm f = new MainForm(x);
+                        this.Hide();
+                        f.ShowDialog();
+                        textBoxPassword.Text = "";
+                        this.Show();
+                    }
                 }
-                if (IsFK) {
-                    MainForm f = new MainForm(x);
-                    this.Hide();
-                    f.ShowDialog();
-                    textBoxPassword.Text = "";
-                    this.Show();
-                }
-               
             }
         }
 

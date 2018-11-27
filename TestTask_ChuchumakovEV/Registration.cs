@@ -33,11 +33,25 @@ namespace TestTask_ChuchumakovEV
             string login = textBox4.Text;
             string pass = textBox3.Text;
             ZaprosVBD ZaprosPodklucheniya = new ZaprosVBD();
-            string str = ZaprosPodklucheniya.SetZapros(login,pass);
-            MessageBox.Show(str);
-            if (str == "Регистрация прошла успешно!")
+            bool Next = false;
+            string str = "";
+            try
             {
-                this.Close();
+                str = ZaprosPodklucheniya.SetZapros(login, pass, path);
+                Next = true;
+            }
+            catch
+            {
+                MessageBox.Show("Не доступа к БД или она не найдена. Попробуйте указать путь через меню, что сразу под кнопкой авторизации.");
+                Next = false;
+            }
+            if (Next)
+            {
+                MessageBox.Show(str);
+                if (str == "Регистрация прошла успешно!")
+                {
+                    this.Close();
+                }
             }
         }
     }

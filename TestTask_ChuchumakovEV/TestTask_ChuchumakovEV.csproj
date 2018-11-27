@@ -112,7 +112,12 @@
     <Compile Include="Registration.Designer.cs">
       <DependentUpon>Registration.cs</DependentUpon>
     </Compile>
-    <Compile Include="SvyazSotrudnikNachalnik.cs" />
+    <Compile Include="ShowMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowMessage.Designer.cs">
+      <DependentUpon>ShowMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UchentnieDannie.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="ZaprosRashetaZP.cs" />
@@ -146,6 +151,9 @@
     </Compile>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowMessage.resx">
+      <DependentUpon>ShowMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Аuthorization.resx">
       <DependentUpon>Аuthorization.cs</DependentUpon>

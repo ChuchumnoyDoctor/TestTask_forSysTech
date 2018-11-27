@@ -117,13 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="listBox1.Items" xml:space="preserve">
-    <value>Форма и реализация по персональным данным пользователя (Имя, фамилия, оклад, дата поступления и пр.) доступна всем пользователям, чьи учетные данные связаны с персональными, а также доступен расчёт личной заработной платы в определенный период.</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAFZSURBVFhH7ZRdT8IwFIbn/T7anXVDRYzx/3tlvPDexIgI
+        CiiKEOMf0fc077wxhhDovOmTNCt9tz5dOV0SiUQiXWCtLYzItRW54FB3FEVhjLV3pcgXrgsOd4PK8fZD
+        laOtjTGnjMIDOdz2vpWjP2AUnjzPSwhHXl6WK/RPGIVH5eCB8ne0PqPwZFkmEI5Vjrde/od8Qvkb+seM
+        tgMTXOHhS+dcyqGNpGla4blHlaPsX0XkiNHWHGCSD50I7QYLyTn+J2mv53DvE+WLXeSe3LlzTPbpJxS5
+        xXYWjH5B+bSVV1V1yGg3cIbPMKnfCSxgqGea0Q9N09TIZ5S/4C/rMdoP+tXC5GsuYqTHi1FS13WD3Zl7
+        uciz/ma0XyAeoA5WKsJ1rJWub6pSyue6E7w9DBD3sZClXwSKTbeb/VlweYtWth4virVNtQAZd4NWOHZj
+        okXZuTwSiYQjSb4BJptYmonsEqoAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="listBox1.Items1" xml:space="preserve">
-    <value>На форме, по расчету заработной платы сотрудников-подчиненных, реализована возможность посмотреть подчиненных выбранного сотрудника (добавление и удаление из общего списка просмотра, посредством CheckBox'а), а также выбор тех сотрудников, что будут учитываться для расчёта ЗП в компании за определенный период.</value>
-  </data>
-  <data name="listBox1.Items2" xml:space="preserve">
-    <value>Реализована БД со следующими таблицами: сотрудник, группа сотрудника, учетные данные и таблица СотрудникНачальник для связи один-ко-многим/многие-ко-многим. Расположена в Debug-папке, рядом с исполняемым .exe файлом программы.</value>
+  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAAPLSURBVFhHrVfbThNRFC0P4K2XubZUa4hafdRoMD6A/gVE
+        v0MS/AITiB+AQIwf4KsJ0USJJhLvVkGj+G4QH8GkCMW1TtcUpp1pp9CV7HS677P3PpdJJYXruhnb8245
+        rjtn2fYb/P4BbYnWxZuDzk3qyuzw8Dzvgu26DxDgLwLsJiHoblquO+/7flluukepVDrmOM49OPwnxzXb
+        tp8hmdv4HSkUCnmoDZDy+XwBvFHIJmCzSF3ZbOH/9NDQ0FHjNCnw1udhvCwn23Aym8vnz0rcEXxzVgC2
+        O/JRyfr+OYnbI+d5lxHwNw3h5CuSuSJR18AsDKMd3+kLFVqzfP+SRNEwb67g+H2MMp+Q6MBANdLwtxAk
+        EVuJYrF4HEr1siM4WP11SU/QHyQBqkTOBIJy4EzZe/HmzWAlgnYg1pTYdXCpQcBp3+YMiL0ffaJDATNx
+        FTE4mFuhVnCdK7NZsUIA/yMrAwcnxYoF+pyD7hPQI7FCaMTCpmUYcJ7VJlOLW2pw+pZGLGG7JHK5nAUd
+        7oimlWKHoCVeg94G25LS9soJfS6dFmQyGRc6lXZJIDhc2O+og5f6iefTErUA8heKOZ7Cw5z5gx1O8ki0
+        SyKbzcKn84EyBgeVJIoEYk1KdyYVlAzZjEgei3Q67TUnYRLDjMjHKp5PST0WluddNz5cd4kV4Km2q729
+        I5TEZ+OAy8pxPvEZwX8kCU6g94OyWWMCPE53wefBkgjpwUEfNiYJUtxcxKJcPiLb6oESYLVg80VODp3A
+        Ov/wSJW4LaiH3q2YwFhq+G20I2kSoRbAMBjCUcljQUMFZfAVJtM8E0mSwBDekA8zhMEynJA8EthAigjw
+        jbqg5f1D220SiHXH+OEy5B1OfxYlbwEd0rHRQyAOoUQNRC1RiVoAnZfGl+OMmcsmDDbBqKHEUXe4vqDs
+        oAoDid+C/UmAlsUOQQef2Yobpy4C8PrEnswbRhh9mI/3kL3mpiNeLKhDXfh7JVYIKP9Dk6Dj3BfLDFcZ
+        TC7HHVRkWOyeA0GvIQYvrNWWgw/CaWbG/iGhtNg9A/xnUclVxkAV7oq9B3MN39vdFsDq5ZVsAG15anzj
+        3OBGJH4YvKVwcwiS6EUl+OZBcFT3F47tMxJFg1fnIAktpwPPBHselJ3BLcu6KFF7sBIwCpbTDnr2gDcZ
+        iTuCS03TXv9CQtk7vnkzeHWG4RQcmMPKOMNNBo4neZ5zWza9BPGZ2ytk3OHqm0ydqmbg4nqeBKoGv4g3
+        9jluS0YX67ybz7mO4ECin+NwPIOhWtKcVEl8Jo8y0Fjy74pU6j/98Fqqdm1jrAAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>
